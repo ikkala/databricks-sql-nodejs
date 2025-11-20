@@ -26,4 +26,14 @@ function tryLoadLZ4Module(): LZ4Module | undefined {
   }
 }
 
-export default tryLoadLZ4Module();
+// The null is already tried resolving that failed
+let resolvedModule: LZ4Module | null | undefined;
+
+function getResolvedModule() {
+  if (resolvedModule === undefined) {
+    resolvedModule = tryLoadLZ4Module() ?? null;
+  }
+  return resolvedModule ?? undefined;
+}
+
+export default getResolvedModule;
