@@ -33,7 +33,7 @@ function getResolvedModule() {
   if (resolvedModule === undefined) {
     resolvedModule = tryLoadLZ4Module() ?? null;
   }
-  return resolvedModule ?? undefined;
+  return resolvedModule === null ? undefined : resolvedModule;
 }
 
 export default getResolvedModule;
